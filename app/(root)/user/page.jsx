@@ -1,8 +1,8 @@
 import { TableUi } from "@/app/_components/TableUi";
 import { getActivity } from "@/app/_lib/userService";
 
+export const revalidate = 0;
 async function page() {
-  // Fetch activity data
   const data = await getActivity();
   return (
     <div>

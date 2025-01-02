@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import Link from "next/link";
 
 export function LoginForm({ className, ...props }) {
   const [userName, setUserName] = useState("");
@@ -101,6 +102,9 @@ export function LoginForm({ className, ...props }) {
           {loading ? "Logging in..." : "Login"}
         </Button>
       </div>
+      <span className="text-center text-sm ">
+        Dont have an Account?<Link href={"/signup"} className="ms-1 underline">signup</Link>
+      </span>
     </form>
   );
 }
