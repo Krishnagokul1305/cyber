@@ -26,7 +26,7 @@ export async function getActivity() {
 export async function getAttacks() {
   try {
     const data = await prisma.attack.findMany();
-    return Array.isArray(data) ? data : [];
+    return Array.isArray(data) ? data.slice(0,9) : [];
   } catch (error) {
     console.log(error);
   }

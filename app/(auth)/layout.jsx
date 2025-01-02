@@ -1,11 +1,10 @@
-import { GalleryVerticalEnd } from "lucide-react";
-import { LoginForm } from "@/app/_components/LoginForm";
+import { GalleryVerticalEnd } from "lucide-react"
+import Image from "next/image"
 import login from "@/public/login.jpg";
-import Image from "next/image";
 
-export default function LoginPage() {
-  return (
-    <div className="grid min-h-svh lg:grid-cols-2 text-gray-700">
+function layout({children}) {
+    return (
+        <div className="grid min-h-svh lg:grid-cols-2 text-gray-700">
       <div className="flex flex-col gap-4 p-6 md:p-10">
         <div className="flex justify-center gap-2 md:justify-start">
           <a href="#" className="flex items-center gap-2 font-medium">
@@ -17,7 +16,7 @@ export default function LoginPage() {
         </div>
         <div className="flex flex-1 items-center justify-center">
           <div className="w-full max-w-xs">
-            <LoginForm />
+           {children}
           </div>
         </div>
       </div>
@@ -29,5 +28,7 @@ export default function LoginPage() {
         />
       </div>
     </div>
-  );
+    )
 }
+
+export default layout

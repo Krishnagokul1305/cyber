@@ -6,7 +6,7 @@ const DashboardCards = ({ attack }) => {
       {attack.map((item, index) => (
         <div
           key={index}
-          className="bg-gray-50 text-gray-700 p-6 rounded-lg shadow-sm flex flex-col items-start justify-center space-y-2"
+          className="bg-white/70 text-gray-700 p-6 rounded-lg shadow-sm flex flex-col items-start justify-center space-y-2"
         >
           <div className="flex items-center gap-2">
             <span className="text-2xl">{item.icon}</span>
