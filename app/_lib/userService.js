@@ -1,3 +1,4 @@
+import { revalidatePath } from "next/cache";
 import prisma from "./prisma";
 
 export async function getUserByEmail(email) {
@@ -17,6 +18,7 @@ export async function getActivity() {
     const data = await prisma.activity.findMany({
       include: { User: true },
     });
+    revalidatePath("/user")
     return data;
   } catch (error) {
     console.log(error);
@@ -26,6 +28,7 @@ export async function getActivity() {
 export async function getAttacks() {
   try {
     const data = await prisma.attack.findMany();
+    revalidatePath("/dashboard")
     return Array.isArray(data) ? data.slice(0,9) : [];
   } catch (error) {
     console.log(error);
