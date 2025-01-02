@@ -1,7 +1,6 @@
 import React from "react";
 
 const DashboardCards = ({ attack }) => {
-  console.log(attack)
   return (
     <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
       {attack.map((item, index) => (

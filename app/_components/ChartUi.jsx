@@ -1,28 +1,5 @@
-"use client";
-
-import { Line } from "react-chartjs-2";
-import {
-  Chart as ChartJS,
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend,
-} from "chart.js";
+import { Line, LineChart, CartesianGrid, XAxis, YAxis, Tooltip, Legend } from "recharts";
 import { ChartContainer } from "@/components/ui/chart";
-
-// Register Chart.js components
-ChartJS.register(
-  CategoryScale,
-  LinearScale,
-  PointElement,
-  LineElement,
-  Title,
-  Tooltip,
-  Legend
-);
 
 const chartConfig = {
   desktop: {
@@ -54,54 +31,31 @@ function ChartUi({ activities }) {
 
   const dailyLogins = getTotalLoginsPerDay(activities);
 
-  const data = {
-    labels: dailyLogins.map((login) => login.date),
-    datasets: [
-      {
-        label: "Total Logins",
-        data: dailyLogins.map((login) => login.totalLogins),
-        borderColor: "#60a5fa",
-        backgroundColor: "rgba(96, 165, 250, 0.5)",
-        tension: 0.4, // Smooth lines
-      },
-    ],
-  };
-
-  const options = {
-    responsive: true,
-    plugins: {
-      legend: {
-        position: "top",
-      },
-      tooltip: {
-        callbacks: {
-          label: (context) => `Total Logins: ${context.raw}`,
-        },
-      },
-    },
-    scales: {
-      x: {
-        title: {
-          display: true,
-          text: "Date",
-        },
-      },
-      y: {
-        title: {
-          display: true,
-          text: "Logins",
-        },
-        beginAtZero: true,
-      },
-    },
-  };
-
   return (
     <ChartContainer
       config={chartConfig}
       className="max-h-[40vh] py-5 my-7 w-full shadow-sm bg-gray-50"
     >
-      <Line data={data} options={options} />
+      <LineChart
+        data={dailyLogins}
+        width={600}
+        height={300}
+        margin={{ top: 10, right: 10, left: 0, bottom: 0 }}
+      >
+        <CartesianGrid strokeDasharray="3 3" />
+        <XAxis dataKey="date" />
+        <YAxis />
+        <Tooltip />
+        <Legend />
+        <Line
+          type="monotone"
+          dataKey="totalLogins"
+          stroke="#60a5fa"
+          strokeWidth={2}
+          dot={{ r: 4 }}
+          activeDot={{ r: 6 }}
+        />
+      </LineChart>
     </ChartContainer>
   );
 }

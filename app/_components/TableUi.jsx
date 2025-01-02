@@ -31,8 +31,8 @@ export const TableUi = ({ data }) => {
               <TableRow key={d.id}>
                 <TableCell></TableCell>
                 <TableCell>{d.id}</TableCell>
-                <TableCell>{d.user.email}</TableCell>
-                <TableCell>{d.user.name}</TableCell>
+                <TableCell>{d.User.email}</TableCell>
+                <TableCell>{d.User.name}</TableCell>
                 <TableCell>
                   {new Date(d.loginTime).toLocaleString()}
                 </TableCell>

@@ -15,9 +15,9 @@ export async function getUserByEmail(email) {
 export async function getActivity() {
   try {
     const data = await prisma.activity.findMany({
-      include: { user: true },
+      include: { User: true },
     });
-    return Array.isArray(data) ? data : [];
+    return data;
   } catch (error) {
     console.log(error);
   }
