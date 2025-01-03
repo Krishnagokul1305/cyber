@@ -45,6 +45,7 @@ export async function getAttackOverview(data) {
 
     const uniqueIps = new Set(data.map((item) => item.ipAddress));
     const uniqueIpCount = uniqueIps.size;
+    const totalActivity=(await getActivity()).length;
 
     const attackCounts = {};
     data.forEach((item) => {
@@ -57,21 +58,27 @@ export async function getAttackOverview(data) {
 
     return [
       {
-        title: "Total Attacks",
+        title: "Total Acitivities",
+        value: totalActivity.toLocaleString(),
+        description: "from last month",
+        icon: "👤",
+      },
+      {
+        title: "Attacks",
         value: totalAttacks.toLocaleString(),
-        description: "+20.1% from last month",
+        description: "from last month",
         icon: "💥",
       },
       {
         title: "Unique IPs",
         value: uniqueIpCount.toLocaleString(),
-        description: "+180.1% from last month",
+        description: "from last month",
         icon: "🌐",
       },
       {
         title: "Total SMS Alerts",
         value: totalAttacks.toLocaleString(),
-        description: "+201 since last hour",
+        description: "from last month",
         icon: "📱",
       },
     ];
