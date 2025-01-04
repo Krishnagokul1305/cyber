@@ -18,7 +18,6 @@ export async function getActivity() {
     const data = await prisma.activity.findMany({
       include: { User: true },
     });
-    revalidatePath("/user")
     return data;
   } catch (error) {
     console.log(error);
@@ -28,8 +27,7 @@ export async function getActivity() {
 export async function getAttacks() {
   try {
     const data = await prisma.attack.findMany();
-    revalidatePath("/dashboard")
-    return Array.isArray(data) ? data.slice(0,9) : [];
+    return Array.isArray(data) ? data.reverse() : [];
   } catch (error) {
     console.log(error);
   }
@@ -42,6 +40,7 @@ export async function getAttackOverview(data) {
     }
 
     const totalAttacks = data.length;
+    console.log(data)
 
     const uniqueIps = new Set(data.map((item) => item.ipAddress));
     const uniqueIpCount = uniqueIps.size;

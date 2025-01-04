@@ -30,15 +30,12 @@ export function LoginForm({ className, ...props }) {
         body: JSON.stringify({ userName, password }),
       });
 
-      console.log("Response received:", response);
       const data = await response.json();
 
       if (!response.ok) {
         console.error("Error:", data.error);
         throw new Error(data.error || "Login failed");
       }
-
-      console.log("Login successful. Token:", data.token);
 
       // Store the token
       localStorage.setItem("token", data.token);
@@ -103,7 +100,10 @@ export function LoginForm({ className, ...props }) {
         </Button>
       </div>
       <span className="text-center text-sm ">
-        Dont have an Account?<Link href={"/signup"} className="ms-1 underline">signup</Link>
+        Dont have an Account?
+        <Link href={"/signup"} className="ms-1 underline">
+          signup
+        </Link>
       </span>
     </form>
   );

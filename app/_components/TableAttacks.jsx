@@ -25,7 +25,7 @@ export const TableAttack = ({ data }) => {
             </TableRow>
           </TableHeader>
           <TableBody>
-            {data?.map((d) => (
+            {data?.slice(0,9).map((d) => (
               <TableRow key={d.id}>
                 <TableHead></TableHead>
                 <TableCell>{d.id}</TableCell>
