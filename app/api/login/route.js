@@ -33,8 +33,8 @@ export async function POST(req) {
     if (containsSQLInjectionPatterns(userName)) {
       await client.messages.create({
         body: `Possible SQL injection detected: ${userName}`,
-        from: "+12184754172",
-        to: "+919345577429",
+        from: "+18165780537",
+        to: "+918682961582",
       });
 
       await prisma.attack.create({
